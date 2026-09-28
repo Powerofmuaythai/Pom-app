@@ -21,3 +21,13 @@ npm run build
 ```
 
 Outputs to `dist/`.
+
+## Standalone build
+
+```
+npm run build:standalone
+```
+
+Produces a single self-contained `dist-standalone/index.html` with all JS/CSS inlined —
+open it directly in a browser (double-click), no dev server needed. Requires internet
+access for the Google Fonts `<link>`.

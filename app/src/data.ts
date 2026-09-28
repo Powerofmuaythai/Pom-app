@@ -1,6 +1,9 @@
 import type { Gear, Product } from "./types";
 import glovesStudio from "./assets/gloves-studio.jpg";
 import shinGuardsImg from "./assets/shin-guards.jpg";
+import shortsImg from "./assets/shorts.jpg";
+import padsImg from "./assets/pads.jpg";
+import mittsImg from "./assets/mitts.jpg";
 
 export const PRODUCTS: Product[] = [
   {
@@ -32,6 +35,7 @@ export const PRODUCTS: Product[] = [
     blurb: "Satin-Shorts mit gesticktem Bund. Weiter Beinschnitt für hohe Kicks.",
     long: "Satin mit 190 g/m², der Bund ist doppelt gestickt und der Beinausschnitt liegt 4 cm höher als bei Boxshorts. Waschbar bei 30 °C.",
     specs: [["Material", "Satin, 190 g/m²"], ["Bund", "Gummi, gestickt"], ["Schnitt", "Thai, weit"], ["Herkunft", "Bangkok, Thailand"], ["Pflege", "30 °C"]],
+    image: shortsImg,
   },
   {
     id: "pads", name: "Thai Pads Curved", line: "Lumpinee", price: "229,00",
@@ -39,6 +43,7 @@ export const PRODUCTS: Product[] = [
     blurb: "Gebogene Pratzen für Kicks und Knie. Paarweise, mit zwei Unterarmschlaufen.",
     long: "Die Krümmung nimmt den Kick auf, ohne dass der Halter den Aufprall in die Schulter bekommt. Vier Schaumlagen, die äußere gegen Durchschlag verdichtet.",
     specs: [["Material", "Rindsleder"], ["Lagen", "4 Schaumlagen"], ["Länge", "45 cm"], ["Inhalt", "1 Paar"], ["Gewicht", "2 × 1,9 kg"]],
+    image: padsImg,
   },
   {
     id: "head", name: "Kopfschutz Open Face", line: "Nakhon", price: "139,00",
@@ -53,6 +58,7 @@ export const PRODUCTS: Product[] = [
     blurb: "Kompakte Pratzen für Präzisionsarbeit. Gebogene Schlagfläche, offene Rückhand.",
     long: "Die Schlagfläche ist um 15° gebogen und mit drei Lagen gefüllt. Die offene Rückhand hält die Hand des Trainers auch nach einer Stunde trocken.",
     specs: [["Material", "Rindsleder"], ["Lagen", "3 Schaumlagen"], ["Durchmesser", "20 cm"], ["Inhalt", "1 Paar"], ["Gewicht", "2 × 380 g"]],
+    image: mittsImg,
   },
   {
     id: "bag", name: "Boxsack 180 cm", line: "Camp", price: "389,00",

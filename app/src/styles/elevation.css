@@ -1,0 +1,11 @@
+:root{
+--shadow-none:none; /* @kind shadow */
+--shadow-1:0 1px 0 rgba(255,255,255,.04) inset,0 2px 8px -4px rgba(0,0,0,.8);
+--shadow-2:0 12px 28px -14px rgba(0,0,0,.9);
+--shadow-3:0 32px 64px -24px rgba(0,0,0,.95);
+--shadow-modal:0 48px 96px -32px rgba(0,0,0,1);
+--inset-hairline:inset 0 0 0 1px var(--border-hairline);
+--inset-gold:inset 0 0 0 1px var(--gold-hairline);
+--focus-ring:0 0 0 2px var(--black-1000),0 0 0 4px var(--gold-500);
+--edge-top:inset 0 1px 0 rgba(255,255,255,.06); /* @kind shadow */
+}

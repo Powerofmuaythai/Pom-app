@@ -1,0 +1,10 @@
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--surface-canvas);color:var(--text-primary);font:var(--text-copy);-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:var(--fw-black);text-transform:uppercase;letter-spacing:var(--ls-display);margin:0;line-height:var(--lh-snug)}
+p{margin:0}
+a{color:var(--text-gold);text-decoration:none;border-bottom:1px solid var(--gold-hairline);transition:var(--transition-control)}
+a:hover{color:var(--gold-300);border-bottom-color:var(--gold-400)}
+::selection{background:var(--gold-500);color:var(--black-1000)}
+:focus-visible{outline:none;box-shadow:var(--focus-ring)}
+.pom-eyebrow{font:var(--text-label);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--text-gold)}
+.pom-rule{height:var(--hairline);background:var(--border-hairline);border:0}

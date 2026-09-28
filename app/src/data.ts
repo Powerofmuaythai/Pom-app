@@ -1,4 +1,6 @@
 import type { Gear, Product } from "./types";
+import glovesStudio from "./assets/gloves-studio.jpg";
+import shinGuardsImg from "./assets/shin-guards.jpg";
 
 export const PRODUCTS: Product[] = [
   {
@@ -7,6 +9,7 @@ export const PRODUCTS: Product[] = [
     blurb: "Handgenäht aus vollnarbigem Rindsleder, drei Schaumlagen, verstärkte Daumenkappe. Für täglichen Sparringsbetrieb gebaut.",
     long: "In Bangkok von Hand gefertigt. Die Schaumlagen sind so geschichtet, dass der Schlag über die Handfläche verteilt wird — bei 16 oz genug Volumen für Sparring, bei 10 oz kompakt genug für den Wettkampf. Das Klettband ist 12 cm lang und stützt das Handgelenk, ohne Bandagen zu ersetzen.",
     specs: [["Material", "Rindsleder, vollnarbig"], ["Füllung", "3-lagiger Schaum"], ["Verschluss", "Klettband, 12 cm"], ["Herkunft", "Bangkok, Thailand"], ["Gewicht", "454 g"]],
+    image: glovesStudio,
   },
   {
     id: "shin", name: "Shin Guards Pro", line: "Rajadamnern", price: "119,00",
@@ -14,6 +17,7 @@ export const PRODUCTS: Product[] = [
     blurb: "Zweiteilige Schienbeinschoner mit Instep-Verlängerung. Für Clinch und Low Kicks im Dauerbetrieb.",
     long: "Der Schaumkern ist an der Kante 22 mm dick und flacht zum Instep auf 12 mm ab, damit der Fuß beim Aufsetzen frei bleibt. Zwei Klettbänder mit Silikonstreifen halten die Position über eine ganze Runde.",
     specs: [["Material", "Rindsleder"], ["Kern", "EVA, 22 mm"], ["Länge", "20–22 cm"], ["Herkunft", "Bangkok, Thailand"], ["Gewicht", "2 × 340 g"]],
+    image: shinGuardsImg,
   },
   {
     id: "wraps", name: "Handbandagen 5 m", line: "Basis", price: "19,00",

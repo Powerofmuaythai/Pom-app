@@ -15,11 +15,20 @@ export function ProductTile({ product, onClick, width, showSizeLine, compactPric
 
   return (
     <div className="tile" style={width ? { width, flex: "none" } : undefined} onClick={onClick}>
-      <Placeholder aspect="4/5" className="tile__media" label="Produkt 4:5">
-        {product.badge && (
-          <span className="badge" style={{ background: badgeBg, color: badgeFg }}>{product.badge}</span>
-        )}
-      </Placeholder>
+      {product.image ? (
+        <div className="tile__media tile__media--photo" style={{ aspectRatio: "4/5" }}>
+          <img src={product.image} alt={product.name} className="tile__img" />
+          {product.badge && (
+            <span className="badge" style={{ background: badgeBg, color: badgeFg }}>{product.badge}</span>
+          )}
+        </div>
+      ) : (
+        <Placeholder aspect="4/5" className="tile__media" label="Produkt 4:5">
+          {product.badge && (
+            <span className="badge" style={{ background: badgeBg, color: badgeFg }}>{product.badge}</span>
+          )}
+        </Placeholder>
+      )}
       <div className="tile__body">
         <span className="tile__line">{product.line}</span>
         <span className={compactPrice ? "tile__name tile__name--sm" : "tile__name"}>{product.name}</span>

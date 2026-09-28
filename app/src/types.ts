@@ -13,6 +13,7 @@ export interface Product {
   blurb: string;
   long: string;
   specs: [string, string][];
+  image?: string;
 }
 
 export interface Gear {

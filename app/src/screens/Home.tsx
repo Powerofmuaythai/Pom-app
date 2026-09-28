@@ -1,12 +1,14 @@
 import { PRODUCTS } from "../data";
 import { useApp } from "../context/AppContext";
-import { Placeholder } from "../components/Placeholder";
 import { ProductTile } from "../components/ProductTile";
+import heroImg from "../assets/hero-fighter.jpg";
+import muayThaiCatImg from "../assets/gloves-wood.jpg";
+import ausstattungCatImg from "../assets/gym-mat.jpg";
 
 const BESTSELLER_IDS = ["bgv1", "shin", "pads", "shorts"];
 const CATEGORY_CARDS = [
-  { name: "Muay Thai", shot: "Ringseil, Detail", cat: "Muay Thai" },
-  { name: "Ausstattung", shot: "Gym bei Nacht", cat: "Ausstattung" },
+  { name: "Muay Thai", cat: "Muay Thai", image: muayThaiCatImg },
+  { name: "Ausstattung", cat: "Ausstattung", image: ausstattungCatImg },
 ];
 
 export function Home() {
@@ -15,7 +17,8 @@ export function Home() {
 
   return (
     <div className="home">
-      <Placeholder aspect="4/5" className="home__hero" label="Bild 4:5 · Fighter im Clinch, hartes Licht" labelPosition="top-left">
+      <div className="home__hero home__hero--photo">
+        <img src={heroImg} alt="" className="home__hero-img" />
         <div className="home__hero-scrim" />
         <div className="home__hero-content">
           <span className="eyebrow eyebrow--gold">Neu · Nakhon Linie</span>
@@ -27,7 +30,7 @@ export function Home() {
             Kollektion ansehen
           </button>
         </div>
-      </Placeholder>
+      </div>
 
       <div className="trust-row">
         <div className="trust-row__item">
@@ -64,15 +67,8 @@ export function Home() {
 
       <div className="cat-cards">
         {CATEGORY_CARDS.map((c) => (
-          <Placeholder
-            key={c.name}
-            aspect="16/9"
-            className="cat-card"
-            label={`Bild 16:9 · ${c.shot}`}
-            labelPosition="top-left"
-            style={{ cursor: "pointer" }}
-            onClick={() => go("category", { cat: c.cat })}
-          >
+          <div key={c.name} className="cat-card cat-card--photo" onClick={() => go("category", { cat: c.cat })}>
+            <img src={c.image} alt="" className="cat-card__img" />
             <div className="cat-card__scrim" />
             <div className="cat-card__content">
               <span className="cat-card__name">{c.name}</span>
@@ -80,7 +76,7 @@ export function Home() {
                 <path d="M5 12h14" /><path d="m13 6 6 6-6 6" />
               </svg>
             </div>
-          </Placeholder>
+          </div>
         ))}
       </div>
 

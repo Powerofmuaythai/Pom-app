@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,300..900;1,400&family=Figtree:wght@300..900&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+<template id="__bundler_thumbnail" data-bg-color="#000000">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><rect width="400" height="400" fill="#000"></rect><rect x="150" y="96" width="100" height="208" rx="18" fill="none" stroke="#E8B923" stroke-width="4"></rect><path d="M172 200h56" stroke="#E8B923" stroke-width="4" stroke-linecap="round"></path><text x="200" y="352" text-anchor="middle" fill="#E8B923" font-family="Helvetica,Arial,sans-serif" font-weight="900" font-size="34" letter-spacing="2">P.O.M</text></svg>
+</template>
+<style>
+*{scrollbar-width:none}
+*::-webkit-scrollbar{width:0;height:0;display:none}
+body{margin:0;background:var(--surface-canvas);color:var(--text-primary);font:var(--text-copy);-webkit-font-smoothing:antialiased}
+a{color:var(--text-gold);text-decoration:none}
+a:hover{color:var(--gold-300)}
+@keyframes pomScanLine{0%{transform:translateY(-46%)}100%{transform:translateY(46%)}}
+@keyframes pomRise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes pomFade{from{opacity:0}to{opacity:1}}
+</style>
+</helmet>
+
+<div style="display:flex;align-items:flex-start;gap:64px;padding:56px 56px 96px;min-height:100vh;background:var(--surface-canvas)">
+
+  <aside style="width:330px;flex:none;display:flex;flex-direction:column;gap:28px;position:sticky;top:56px">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <span style="font:var(--fw-black) 26px/1 var(--font-display);letter-spacing:.02em;color:var(--gold-500)">P.O.M</span>
+      <span style="font:var(--fw-bold) 11px/1.2 var(--font-display);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--text-muted)">Mobile App · Konzept 01</span>
+    </div>
+    <p style="font:var(--fw-regular) 14px/1.6 var(--font-text);color:var(--text-secondary);max-width:34ch;text-wrap:pretty">Shopping app, German UI. Browse to bag — checkout is intentionally a dead end. The scanner sits in the centre of the tab bar and does two jobs: scan gear on the shelf in a P.O.M store, or scan the QR on gear you already own to get an authenticity passport, care notes and a reorder path.</p>
+    <div style="height:1px;background:var(--border-hairline)"></div>
+    <div style="display:flex;flex-direction:column;gap:9px">
+      <span style="font:var(--fw-bold) 11px/1.2 var(--font-display);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--text-muted)">Screens</span>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+        <sc-for list="{{ jumps }}" as="j" hint-placeholder-count="10">
+          <button onClick="{{ j.go }}" style="height:38px;padding:0 12px;text-align:left;background:transparent;border:0;cursor:pointer;border-radius:var(--radius-control);box-shadow:{{ j.ring }};color:{{ j.fg }};font:var(--fw-semibold) 12px/1 var(--font-text)">{{ j.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+    <div style="height:1px;background:var(--border-hairline)"></div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <span style="font:var(--fw-bold) 11px/1.2 var(--font-display);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--text-muted)">Notes</span>
+      <p style="font:var(--fw-regular) 13px/1.6 var(--font-text);color:var(--text-muted)">Gold stays an accent: primary button, price, the 2px active indicator, the scan reticle and the authenticity seal. Nothing else. Every image is a labelled placeholder naming its crop — drop real photography in and the layout is unchanged.</p>
+      <p style="font:var(--fw-regular) 13px/1.6 var(--font-text);color:var(--text-muted)">Product detail hides the tab bar for a persistent buy bar. Size guide and filters are bottom sheets. Tap the gold shutter on Scan to simulate a read.</p>
+    </div>
+  </aside>
+
+  <div style="width:402px;height:874px;flex:none;position:relative;overflow:hidden;border-radius:48px;background:var(--black-1000);box-shadow:0 40px 90px rgba(0,0,0,.55),0 0 0 1px rgba(247,244,236,.14)">
+    <div style="position:absolute;top:11px;left:50%;transform:translateX(-50%);width:126px;height:37px;border-radius:24px;background:#000;z-index:50"></div>
+    <div style="position:absolute;top:0;left:0;right:0;height:62px;padding:19px 32px 0;display:flex;align-items:center;justify-content:space-between;z-index:45;pointer-events:none;font:600 16px/1 -apple-system,system-ui,sans-serif;color:var(--bone-050)">
+      <span>21:42</span>
+      <span style="display:flex;align-items:center;gap:7px">
+        <svg width="18" height="12" viewBox="0 0 18 12" fill="var(--bone-050)"><rect x="0" y="8" width="3" height="4" rx="1"></rect><rect x="5" y="6" width="3" height="6" rx="1"></rect><rect x="10" y="3" width="3" height="9" rx="1"></rect><rect x="15" y="0" width="3" height="12" rx="1"></rect></svg>
+        <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="var(--bone-050)" stroke-width="1.6" stroke-linecap="round"><path d="M1.2 4.2a10 10 0 0 1 13.6 0"></path><path d="M3.9 7a6.2 6.2 0 0 1 8.2 0"></path><path d="M6.6 9.7a2.4 2.4 0 0 1 2.8 0"></path></svg>
+        <svg width="25" height="12" viewBox="0 0 25 12"><rect x="0.5" y="0.5" width="21" height="11" rx="3.2" fill="none" stroke="rgba(255,253,248,.4)"></rect><rect x="2" y="2" width="15" height="8" rx="2" fill="var(--bone-050)"></rect><path d="M23 4.2v3.6a2.2 2.2 0 0 0 0-3.6z" fill="rgba(255,253,248,.4)"></path></svg>
+      </span>
+    </div>
+    <div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:139px;height:5px;border-radius:100px;background:rgba(255,253,248,.7);z-index:60;pointer-events:none"></div>
+    <div style="height:100%;display:flex;flex-direction:column;position:relative;overflow:hidden;background:var(--surface-canvas);color:var(--text-primary);font:var(--text-copy)">
+
+      <div style="flex:none;padding:58px 20px 0;background:rgba(0,0,0,.86);backdrop-filter:blur(10px);z-index:20">
+        <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+          <div style="height:52px;display:flex;align-items:center;justify-content:space-between">
+            <span style="font:var(--fw-black) 21px/1 var(--font-display);letter-spacing:.02em;color:var(--gold-500)">P.O.M</span>
+            <div style="display:flex;align-items:center;gap:4px">
+              <button onClick="{{ goSearch }}" aria-label="Suche" style="width:44px;height:44px;display:grid;place-items:center;background:none;border:0;cursor:pointer;color:var(--text-secondary)">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.6-3.6"></path></svg>
+              </button>
+              <button onClick="{{ goBag }}" aria-label="Warenkorb" style="width:44px;height:44px;display:grid;place-items:center;background:none;border:0;cursor:pointer;color:var(--text-primary);position:relative">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><path d="M3 6h18"></path><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                <sc-if value="{{ hasBag }}" hint-placeholder-val="{{ false }}">
+                  <span style="position:absolute;top:5px;right:5px;min-width:16px;height:16px;padding:0 4px;background:var(--gold-500);color:var(--black-1000);border-radius:var(--radius-1);font:var(--fw-black) 10px/16px var(--font-display);text-align:center">{{ bagCount }}</span>
+                </sc-if>
+              </button>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ showBack }}" hint-placeholder-val="{{ false }}">
+          <div style="height:52px;display:flex;align-items:center;gap:6px">
+            <button onClick="{{ back }}" aria-label="Zurück" style="width:44px;height:44px;margin-left:-12px;display:grid;place-items:center;background:none;border:0;cursor:pointer;color:var(--text-primary)">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg>
+            </button>
+            <span style="font:var(--fw-black) 13px/1 var(--font-display);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--text-primary)">{{ screenTitle }}</span>
+            <span style="flex:1"></span>
+            <span style="font:var(--fw-regular) 12px/1.5 var(--font-mono);color:var(--text-muted)">{{ headerMeta }}</span>
+          </div>
+        </sc-if>
+        <sc-if value="{{ showPromo }}" hint-placeholder-val="{{ true }}">
+          <div style="height:30px;display:flex;align-items:center;border-top:1px solid var(--border-hairline);font:var(--fw-regular) 11px/1 var(--font-mono);letter-spacing:var(--ls-mono);color:var(--gold-400)">Kostenloser Versand ab 99 € · Bangkok → 3 Tage</div>
+        </sc-if>
+      </div>
+
+      <div style="flex:1;overflow-y:auto;overflow-x:hidden">
+
+        <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;gap:40px;padding-bottom:120px">
+            <div style="position:relative;aspect-ratio:4/5;background:var(--black-800);box-shadow:var(--inset-hairline);display:flex;align-items:flex-end;overflow:hidden">
+              <span style="position:absolute;top:16px;left:16px;font:var(--fw-bold) 11px/1.2 var(--font-display);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--bone-600)">Bild 4:5 · Fighter im Clinch, hartes Licht</span>
+              <div style="position:absolute;inset:0;background:var(--surface-scrim)"></div>
+              <div style="position:relative;padding:24px 20px 28px;display:flex;flex-direction:column;gap:14px;width:100%">
+                <span style="font:var(--fw-bold) 11px/1.2 var(--font-display);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--gold-400)">Neu · Nakhon Linie</span>
+                <h1 style="margin:0;font:var(--fw-black) 44px/.92 var(--font-display);letter-spacing:var(--ls-display);text-transform:uppercase;color:var(--bone-050)">Sparring<br><span style="color:var(--gold-500)">Handschuhe</span></h1>
+                <span style="font:var(--fw-regular) 12px/1.5 var(--font-mono);color:var(--bone-300)">Rindsleder · 3 Schaumlagen · 10–16 oz</span>
+                <button onClick="{{ goNakhon }}" style="margin-top:6px;height:52px;width:100%;display:flex;align-items:center;justify-content:center;gap:10px;background:var(--action-primary-bg);color:var(--action-primary-fg);border:0;border-radius:var(--radius-control);cursor:pointer;font:var(--fw-black) 13px/1 var(--font-display);letter-spacing:var(--ls-label);text-transform:uppercase">Kollektion ansehen</button>
+              </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border-hairline);margin:0 20px">
+              <div style="background:var(--surface-canvas);padding:16px 8px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold-500)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.7 8.9a1 1 0 0 1-.6 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1 1 0 0 1 1.5 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"></path></svg>
+                <span style="font:var(--fw-regular) 11px/1.4 var(--font-mono);color:var(--text-muted)">Getestet<br>Lumpinee</span>
+              </div>
+              <div style="background:var(--surface-canvas);padding:16px 8px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold-500)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 17V5H2v12h12z"></path><path d="M14 9h4l4 4v4h-8"></path><circle cx="7" cy="19" r="2"></circle><circle cx="17" cy="19" r="2"></circle></svg>
+                <span style="font:var(--fw-regular) 11px/1.4 var(--font-mono);color:var(--text-muted)">Versand<br>3 Tage</span>
+              </div>
+              <div style="background:var(--surface-canvas);padding:16px 8px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold-500)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"></path><path d="M3 3v5h5"></path></svg>
+                <span style="font:var(--fw-regular) 11px/1.4 var(--font-mono);color:var(--text-muted)">30 Tage<br>Rückgabe</span>
+              </div>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:16px">
+              <div style="padding:0 20px;display:flex;align-items:baseline;justify-content:space-between">
+                <h2 style="margin:0;font:var(--fw-black) 22px/1 var(--font-display);letter-spacing:var(--ls-display);text-transform:uppercase">Bestseller</h2>
+                <button onClick="{{ goShop }}" style="background:none;border:0;padding:0;cursor:pointer;font:var(--fw-semibold) 12px/1 var(--font-text);color:var(--text-gold)">Alle ansehen</button>
+              </div>
+              <div style="display:flex;gap:12px;overflow-x:auto;padding:0 20px 4px">
+                <sc-for list="{{ bestsellers }}" as="t" hint-placeholder-count="3">
+                  <div onClick="{{ t.open }}" style="flex:none;width:180px;background:var(--surface-card);box-shadow:var(--inset-hairline);border-radius:var(--radius-card);cursor:pointer;overflow:hidden">
+                    <div style="position:relative;aspect-ratio:4/5;background:var(--black-800);display:grid;place-items:center">
+                      <span style="font:var(--fw-bold) 10px/1.2 var(--font-display);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--bone-600)">Produkt 4:5</span>
+                      <sc-if value="{{ t.badge }}" hint-placeholder-val="{{ true }}">
+                        <span style="position:absolute;top:8px;left:8px;height:20px;padding:0 7px;display:inline-flex;align-items:center;background:{{ t.badgeBg }};color:{{ t.badgeFg }};border-radius:var(--radius-badge);font:var(--fw-black) 10px/1 var(--font-display);letter-spacing:var(--ls-label);text-transform:uppercase">{{ t.badge }}</span>
+                      </sc-if>
+                    </div>
+                    <div style="padding:12px;display:flex;flex-direction:column;gap:4px">
+                      <span style="font:var(--fw-bold) 10px/1.2 var(--font-display);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--text-muted)">{{ t.line }}</span>
+                      <span style="font:var(--fw-black) 14px/1.15 var(--font-display);letter-spacing:var(--ls-title);text-transform:uppercase">{{ t.name }}</span>
+                      <span style="margin-top:4px;font:var(--fw-black) 14px/1 var(--font-display);color:var(--gold-400)">{{ t.price }} €</span>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+
+            <div style="padding:0 20px;display:flex;flex-direction:column;gap:12px">
+              <sc-for list="{{ catCards }}" as="c" hint-placeholder-count="2">
+                <div onClick="{{ c.open }}" style="position:relative;aspect-ratio:16/9;background:var(--black-800);box-shadow:var(--inset-hairline);border-radius:var(--radius-media);overflow:hidden;display:flex;align-items:flex-end;cursor:pointer">
+                  <span style="position:absolute;top:12px;left:14px;font:var(--fw-bold) 10px/1.2 var(--font-display);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--bone-600)">Bild 16:9 · {{ c.shot }}</span>
+                  <div style="position:absolute;inset:0;background:var(--surface-scrim)"></div>
+                  <div style="position:relative;padding:16px;display:flex;align-items:center;justify-content:space-between;width:100%">
+                    <span style="font:var(--fw-black) 20px/1 var(--font-display);letter-spacing:var(--ls-display);text-transform:uppercase">{{ c.name }}</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold-500)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+
+            <div style="margin:0 20px;padding:20px;background:var(--surface-card);box-shadow:var(--inset-gold);border-radius:var(--radius-card);display:flex;flex-direction:column;gap:12px">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold-500)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path><path d="M7 12h10"></path></svg>
+              <span style="font:var(--fw-black) 18px/1.1 var(--font-display);letter-spacing:var(--ls-title);text-transform:uppercase">Equipment scannen</span>
+              <p style="font:var(--fw-regular) 13px/1.6 var(--font-text);color:var(--text-secondary)">Im Store den Code am Regal scannen für Größen und Lagerbestand. Bei eigener Ausrüstung den QR am Innenlabel scannen: Echtheit, Pflege, Nachbestellung.</p>
+              <button onClick="{{ goScan }}" style="height:44px;padding:0 18px;align-self:flex-start;display:inline-flex;align-items:center;background:transparent;color:var(--action-secondary-fg);border:1px solid var(--action-secondary-border);border-radius:var(--radius-control);cursor:pointer;font:var(--fw-black) 12px/1 var(--font-display);letter-spacing:var(--ls-label);text-transform:uppercase">Scanner öffnen</button>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isCat }}" hint-placeholder-val="{{ false }}">
+          <div style="padding-bottom:120px">
+            <div style="padding:16px 20px 12px;display:flex;flex-direction:column;gap:12px">
+              <h1 style="margin:0;font:var(--fw-black) 30px/1 var(--font-display);letter-spacing:var(--ls-display);text-transform:uppercase">{{ catName }}</h1>
+              <span style="font:var(--fw-regular) 12px/1.5 var(--font-mono);color:var(--text-muted)">{{ catCount }} Artikel · Sortiert nach {{ sort }}</span>
+            </div>
+            <div style="display:flex;gap:8px;overflow-x:auto;padding:0 20px 14px">
+              <button onClick="{{ openFilters }}" style="flex:none;height:34px;padding:0 14px;display:inline-flex;align-items:center;gap:8px;background:transparent;border:0;box-shadow:inset 0 0 0 1px var(--border-strong);border-radius:var(--radius-control);cursor:pointer;color:var(--text-primary);font:var(--fw-semibold) 12px/1 var(--font-text)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M4 6h16"></path><path d="M4 12h10"></path><path d="M4 18h6"></path></svg>Filter
+              </button>
+              <sc-for list="{{ chips }}" as="f" hint-placeholder-count="4">
+                <button onClick="{{ f.toggle }}" style="flex:none;height:34px;padding:0 14px;display:inline-flex;align-items:center;border:0;border-radius:var(--radius-control);cursor:pointer;background:{{ f.bg }};color:{{ f.fg }};box-shadow:{{ f.ring }};font:var(--fw-semibold) 12px/1 var(--font-text)">{{ f.label }}</button>
+              </sc-for>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 20px">
+              <sc-for list="{{ catTiles }}" as="t" hint-placeholder-count="6">
+                <div onClick="{{ t.open }}" style="background:var(--surface-card);box-shadow:var(--inset-hairline);border-radius:var(--radius-card);cursor:pointer;overflow:hidden">
+                  <div style="position:relative;aspect-ratio:4/5;background:var(--black-800);display:grid;place-items:center">
+                    <span style="font:var(--fw-bold) 10px/1.2 var(--font-display);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--bone-600)">Produkt 4:5</span>
+                    <sc-if value="{{ t.badge }}" hint-placeholder-val="{{ true }}">
+                      <span style="position:absolute;top:8px;left:8px;height:20px;padding:0 7px;display:inline-flex;align-items:center;background:{{ t.badgeBg }};color:{{ t.badgeFg }};border-radius:var(--radius-badge);font:var(--fw-black) 10px/1 var(--font-display);letter-spacing:var(--ls-label);text-transform:uppercase">{{ t.badge }}</span>
+                    </sc-if>
+                  </div>
+                  <div style="padding:12px;display:flex;flex-direction:column;gap:4px">
+                    <span style="font:var(--fw-bold) 10px/1.2 var(--font-display);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--text-muted)">{{ t.line }}</span>
+                    <span style="font:var(--fw-black) 13px/1.15 var(--font-display);letter-spacing:var(--ls-title);text-transform:uppercase">{{ t.name }}</span>
+                    <span style="font:var(--fw-regular) 11px/1.4 var(--font-mono);color:var(--text-muted)">{{ t.sizeLine }}</span>
+                    <span style="margin-top:2px;font:var(--fw-black) 13px/1 var(--font-display);color:var(--gold-400)">{{ t.price }} €</span>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isProd }}" hint-placeholder-val="{{ false }}">
+          <div style="padding-bottom:130px">
+            <div style="position:relative;aspect-ratio:4/5;background:var(--black-800);box-shadow:var(--inset-hairline);display:grid;place-items:center">
+              <span style="font:var(--fw-bold) 11px/1.2 var(--font-display);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--bone-600)">Produkt 4:5 · freigestellt</span>
+              <sc-if value="{{ pBadge }}" hint-placeholder-val="{{ true }}">
+                <span style="position:absolute;top:14px;left:14px;height:22px;padding:0 8px;display:inline-flex;align-items:center;background:var(--gold-500);color:var(--black-1000);border-radius:var(--radius-badge);font:var(--fw-black) 10px/1 var(--font-display);letter-spacing:var(--ls-label);text-transform:uppercase">{{ pBadge }}</span>
+              </sc-if>
+              <button onClick="{{ toggleWish }}" aria-label="Merken" style="position:absolute;top:12px;right:12px;width:44px;height:44px;display:grid;place-items:center;background:rgba(0,0,0,.5);border:0;border-radius:var(--radius-control);cursor:pointer;color:{{ wishColor }}">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="{{ wishFill }}" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>
+              </button>
+            </div>
+            <div style="display:flex;gap:8px;padding:12px 20px 0">
+              <sc-for list="{{ pThumbs }}" as="th" hint-placeholder-count="4">
+                <div style="width:56px;aspect-ratio:1/1;background:var(--black-800);box-shadow:{{ th.ring }};border-radius:var(--radius-media);cursor:pointer;display:grid;place-items:center;font:var(--fw-regular) 10px/1 var(--font-mono);color:var(--bone-600)">{{ th.n }}</div>
+              </sc-for>
+            </div>
+
+            <div style="padding:20px;display:flex;flex-direction:column;gap:14px">
+              <span style="font:var(--fw-bold) 11px/1.2 var(--font-display);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--gold-400)">{{ pLine }}</span>
+              <h1 style="margin:0;font:var(--fw-black) 30px/.98 var(--font-display);letter-spacing:var(--ls-display);text-transform:uppercase">{{ pName }}</h1>
+              <div style="display:flex;align-items:baseline;gap:12px">
+                <span style="font:var(--fw-black) 26px/1 var(--font-display);color:var(--gold-400)">{{ pPrice }} €</span>
+                <span style="font:var(--fw-regular) 11px/1.4 var(--font-mono);color:var(--text-muted)">inkl. MwSt. · zzgl. Versand</span>
+              </div>
+              <p style="font:var(--fw-regular) 15px/1.6 var(--font-text);color:var(--text-secondary);text-wrap:pretty">{{ pBlurb }}</p>
+
+              <div style="height:1px;background:var(--border-hairline);margin:4px 0"></div>
+
+              <div style="display:flex;align-items:center;justify-content:space-between">
+                <span style="font:var(--fw-bold) 11px/1.2 var(--font-display);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--text-secondary)">Größe wählen</span>
+                <button onClick="{{ openSizeGuide }}" style="height:44px;background:none;border:0;padding:0;cursor:pointer;display:inline-flex;align-items:center;gap:6px;color:var(--text-gold);font:var(--fw-semibold) 13px/1 var(--font-text)">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21.3 8.7 8.7 21.3a1 1 0 0 1-1.4 0l-4.6-4.6a1 1 0 0 1 0-1.4L15.3 2.7a1 1 0 0 1 1.4 0l4.6 4.6a1 1 0 0 1 0 1.4Z"></path><path d="m14.5 12.5-2-2"></path><path d="m11.5 15.5-2-2"></path><path d="m17.5 9.5-2-2"></path></svg>Größentabelle
+                </button>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:8px">
+                <sc-for list="{{ pSizes }}" as="s" hint-placeholder-count="4">
+                  <button onClick="{{ s.pick }}" style="min-width:64px;height:44px;padding:0 16px;border:0;border-radius:var(--radius-control);cursor:pointer;background:{{ s.bg }};color:{{ s.fg }};box-shadow:{{ s.ring }};font:var(--fw-semibold) 13px/1 var(--font-text)">{{ s.label }}</button>
+                </sc-for>
+              </div>
+
+              <sc-if value="{{ showStock }}" hint-placeholder-val="{{ true }}">
+                <div style="display:flex;align-items:center;gap:8px;font:var(--fw-semibold) 13px/1 var(--font-text);color:var(--text-success)">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Auf Lager · Versand heute bis 16 Uhr
+                </div>
+              </sc-if>
+
+              <div style="height:1px;background:var(--border-hairline);margin:4px 0"></div>
+
+              <div style="display:flex;gap:20px">
+                <sc-for list="{{ pTabs }}" as="tb" hint-placeholder-count="3">
+                  <button onClick="{{ tb.pick }}" style="height:44px;background:none;border:0;padding:0;cursor:pointer;color:{{ tb.fg }};border-bottom:{{ tb.rule }};font:var(--fw-black) 12px/1 var(--font-display);letter-spacing:var(--ls-label);text-transform:uppercase">{{ tb.label }}</button>
+                </sc-for>
+              </div>
+              <sc-if value="{{ tabDesc }}" hint-placeholder-val="{{ true }}">
+                <p style="font:var(--fw-regular) 14px/1.7 var(--font-text);color:var(--text-secondary);text-wrap:pretty">{{ pLong }}</p>
+              </sc-if>
+              <sc-if value="{{ tabSpec }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;flex-direction:column">
+                  <sc-for list="{{ pSpecs }}" as="sp" hint-placeholder-count="5">
+                    <div style="display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--border-hairline);font:var(--fw-regular) 12px/1.5 var(--font-mono)">
+                      <span style="color:var(--text-muted)">{{ sp.k }}</span><span style="color:var(--text-primary);text-align:right">{{ sp.v }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+              <sc-if value="{{ tabRev }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;flex-direction:column;gap:18px">
+                  <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="2">
+                    <div style="display:flex;flex-direction:column;gap:7px">
+                      <div style="display:flex;gap:3px">
+                        <sc-for list="{{ r.stars }}" as="st" hint-placeholder-count="5">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--gold-500)" stroke="none"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"></path></svg>
+                        </sc-for>
+                      </div>
+                      <span style="font:var(--fw-regular) 14px/1.6 var(--font-text);color:var(--text-secondary)">{{ r.text }}</span>
+                      <span style="font:var(--fw-regular) 11px/1.4 var(--font-mono);color:var(--text-muted)">{{ r.who }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+
+              <div style="height:1px;background:var(--border-hairline);margin:8px 0 0"></div>
+              <h2 style="margin:8px 0 0;font:var(--fw-black) 20px/1 var(--font-display);letter-spacing:var(--ls-display);text-transform:uppercase">Passt dazu</h2>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                <sc-for list="{{ crossTiles }}" as="t" hint-placeholder-count="2">
+                  <div onClick="{{ t.open }}" style="background:var(--surface-card);box-shadow:var(--inset-hairline);border-radius:var(--radius-card);cursor:pointer;overflow:hidden">
+                    <div style="aspect-ratio:4/5;background:var(--black-800);display:grid;place-items:center;font:var(--fw-bold) 10px/1.2 var(--font-display);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--bone-600)">Produkt 4:5</div>
+                    <div style="padding:12px;display:flex;flex-direction:column;gap:4px">
+                      <span style="font:var(--fw-black) 13px/1.15 var(--font-display);letter-spacing:var(--ls-title);text-transform:uppercase">{{ t.name }}</span>
+                      <span style="font:var(--fw-black) 13px/1 var(--font-display);color:var(--gold-400)">{{ t.price }} €</span>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isScan }}" hint-placeholder-val="{{ false }}">
+          <div style="min-height:100%;display:flex;flex-direction:column;background:var(--black-1000);padding-bottom:120px">
+            <div style="display:flex;gap:4px;background:var(--surface-inset);box-shadow:var(--inset-hairline);border-radius:var(--radius-control);margin:12px 20px 0;padding:4px">
+              <sc-for list="{{ scanModes }}" as="m" hint-placeholder-count="2">
+                <button onClick="{{ m.pick }}" style="flex:1;height:40px;border:0;border-radius:var(--radius-control);cursor:pointer;background:{{ m.bg }};color:{{ m.fg }};font:var(--fw-black) 11px/1 var(--font-display);letter-spacing:var(--ls-label);text-transform:uppercase">{{ m.label }}</button>
+              </sc-for>
+            </div>
+            <div style="position:relative;margin:20px;aspect-ratio:1/1;background:var(--black-900);box-shadow:var(--inset-hairline);border-radius:var(--radius-media);overflow:hidden;display:grid;place-items:center">
+              <span style="font:var(--fw-regular) 11px/1.6 var(--font-mono);color:var(--bone-600);text-align:center">Kamera-Feed<br>1:1</span>
+              <div style="position:absolute;top:18%;left:18%;width:64%;height:64%">
+                <div style="position:absolute;top:0;left:0;width:34px;height:34px;border-top:2px solid var(--gold-500);border-left:2px solid var(--gold-500)"></div>
+                <div style="position:absolute;top:0;right:0;width:34px;height:34px;border-top:2px solid var(--gold-500);border-right:2px solid var(--gold-500)"></div>
+                <div style="position:absolute;bottom:0;left:0;width:34px;height:34px;border-bottom:2px solid var(--gold-500);border-left:2px solid var(--gold-500)"></div>
+                <div style="position:absolute;bottom:0;right:0;width:34px;height:34px;border-bottom:2px solid var(--gold-500);border-right:2px solid var(--gold-500)"></div>
+                <sc-if value="{{ scanning }}" hint-placeholder-val="{{ false }}">
+                  <div style="position:absolute;left:0;right:0;top:50%;height:2px;background:var(--gold-400);box-shadow:0 0 18px 2px rgba(232,185,35,.55);animation:pomScanLine .8s var(--ease-standard) infinite alternate"></div>
+                </sc-if>
+              </div>
+            </div>
+            <div style="padding:0 20px;display:flex;flex-direction:column;gap:6px;text-align:center">
+              <span style="font:var(--fw-bold) 11px/1.2 var(--font-display);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--gold-400)">{{ scanStatus }}</span>
+              <p style="font:var(--fw-regular) 13px/1.6 var(--font-text);color:var(--text-muted)">{{ scanHint }}</p>
+            </div>
+            <div style="margin-top:auto;padding:28px 20px 0;display:flex;flex-direction:column;align-items:center;gap:16px">
+              <button onClick="{{ doScan }}" aria-label="Scannen" style="width:72px;height:72px;border-radius:var(--radius-pill);border:0;cursor:pointer;background:var(--gold-500);color:var(--black-1000);display:grid;place-items:center;box-shadow:var(--gold-glow)">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path><path d="M7 12h10"></path></svg>
+              </button>
+              <button onClick="{{ goAccount }}" style="height:44px;background:none;border:0;cursor:pointer;color:var(--text-secondary);font:var(--fw-semibold) 13px/1 var(--font-text)">Code manuell eingeben</button>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isScanP }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:0 20px 130px;display:flex;flex-direction:column;gap:18px;animation:pomRise .24s var(--ease-out)">
+            <div style="display:flex;align-items:center;gap:10px;padding-top:8px">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-500)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+              <span style="font:var(--fw-bold) 11px/1.2 var(--font-display);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--gold-400)">Regal-Code erkannt</span>
+            </div>
+            <div style="display:flex;gap:14px">
+              <div style="width:104px;flex:none;aspect-ratio:4/5;background:var(--black-800);box-shadow:var(--inset-hairline);border-radius:var(--radius-media);display:grid;place-items:center;font:var(--fw-bold) 9px/1.2 var(--font-display);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--bone-600)">4:5</div>
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <span style="font:var(--fw-bold) 10px/1.2 var(--font-display);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--text-muted)">{{ pLine }}</span>
+                <span style="font:var(--fw-black) 20px/1.05 var(--font-display);letter-spacing:var(--ls-title);text-transform:uppercase">{{ pName }}</span>
+                <span style="font:var(--fw-regular) 11px/1.5 var(--font-mono);color:var(--text-muted)">{{ pSku }}</span>
+                <span style="margin-top:2px;font:var(--fw-black) 20px/1 var(--font-display);color:var(--gold-400)">{{ pPrice }} €</span>
+              </div>
+            </div>
+            <div style="height:1px;background:var(--border-hairline)"></div>
+            <span style="font:var(--fw-bold) 11px/1.2 var(--font-display);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--text-secondary)">Im Regal · Filiale Bangkok Thonglor</span>
+            <div style="display:flex;flex-direction:column">
+              <sc-for list="{{ shelf }}" as="sh" hint-placeholder-count="4">
+                <button onClick="{{ sh.pick }}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;background:none;border:0;border-bottom:1px solid var(--border-hairline);cursor:pointer;text-align:left">
+                  <span style="font:var(--fw-semibold) 14px/1 var(--font-text);color:{{ sh.fg }}">{{ sh.label }}</span>
+                  <span style="font:var(--fw-regular) 11px/1.4 var(--font-mono);color:{{ sh.stockFg }}">{{ sh.stock }}</span>
+                </button>
+              </sc-for>
+            </div>
+            <button onClick="{{ addToBag }}" style="height:52px;width:100%;display:flex;align-items:center;justify-content:center;background:var(--action-primary-bg);color:var(--action-primary-fg);border:0;border-radius:var(--radius-control);cursor:pointer;font:var(--fw-black) 13px/1 var(--font-display);letter-spacing:var(--ls-label);text-transform:uppercase">{{ size }} in den Warenkorb</button>
+            <button onClick="{{ goProduct }}" style="height:44px;width:100%;display:flex;align-items:center;justify-content:center;background:transparent;color:var(--action-secondary-fg);border:1px solid var(--action-secondary-border);border-radius:var(--radius-control);cursor:pointer;font:var(--fw-black) 12px/1 var(--font-display);letter-spacing:var(--ls-label);text-transform:uppercase">Alle Details</button>
+            <button onClick="{{ goScan }}" style="height:44px;background:none;border:0;cursor:pointer;color:var(--text-secondary);font:var(--fw-semibold) 13px/1 var(--font-text)">Weiter scannen</button>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isScanG }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:0 20px 130px;display:flex;flex-direction:column;gap:20px;animation:pomRise .24s var(--ease-out)">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:14px;padding:24px 0 4px">
+              <div style="width:88px;height:88px;border-radius:var(--radius-pill);background:var(--gold-metal);display:grid;place-items:center;box-shadow:var(--gold-glow)">
+                <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="var(--black-1000)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.7 8.9a1 1 0 0 1-.6 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1 1 0 0 1 1.5 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>
+              </div>
+              <span style="font:var(--fw-black) 22px/1 var(--font-display);letter-spacing:var(--ls-display);text-transform:uppercase;color:var(--gold-400)">Echtheit bestätigt</span>
+              <span style="font:var(--fw-regular) 12px/1.5 var(--font-mono);color:var(--text-muted);text-align:center">{{ gearSerial }}</span>
+            </div>
+            <div style="padding:18px;background:var(--surface-card);box-shadow:var(--inset-hairline);border-radius:var(--radius-card);display:flex;flex-direction:column;gap:12px">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+                <span style="font:var(--fw-black) 17px/1.1 var(--font-display);letter-spacing:var(--ls-title);text-transform:uppercase">{{ gearName }}</span>
+                <span style="height:20px;padding:0 7px;display:inline-flex;align-items:center;background:transparent;box-shadow:inset 0 0 0 1px var(--border-gold);color:var(--gold-400);border-radius:var(--radius-badge);font:var(--fw-black) 10px/1 var(--font-display);letter-spacing:var(--ls-label);text-transform:uppercase">Registriert</span>
+              </div>
+              <div style="display:flex;flex-direction:column">
+                <sc-for list="{{ gearSpecs }}" as="g" hint-placeholder-count="5">
+                  <div style="display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid var(--border-hairline);font:var(--fw-regular) 12px/1.5 var(--font-mono)">
+                    <span style="color:var(--text-muted)">{{ g.k }}</span><span style="color:var(--text-primary);text-align:right">{{ g.v }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <span style="font:var(--fw-bold) 11px/1.2 var(--font-display);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--text-secondary)">Pflege</span>
+              <sc-for list="{{ care }}" as="c" hint-placeholder-count="3">
+                <div style="display:flex;gap:10px;align-items:flex-start">
+                  <span style="color:var(--gold-500);font:var(--fw-regular) 13px/1.6 var(--font-mono)">·</span>
+                  <span style="font:var(--fw-regular) 14px/1.6 var(--font-text);color:var(--text-secondary)">{{ c.t }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <button onClick="{{ reorder }}" style="height:52px;width:100%;display:flex;align-items:center;justify-content:center;background:var(--action-primary-bg);color:var(--action-primary-fg);border:0;border-radius:var(--radius-control);cursor:pointer;font:var(--fw-black) 13px/1 var(--font-display);letter-spacing:var(--ls-label);text-transform:uppercase">Nachbestellen</button>
+            <button onClick="{{ warranty }}" style="height:44px;width:100%;display:flex;align-items:center;justify-content:center;background:transparent;color:var(--action-secondary-fg);border:1px solid var(--action-secondary-border);border-radius:var(--radius-control);cursor:pointer;font:var(--fw-black) 12px/1 var(--font-display);letter-spacing:var(--ls-label);text-transform:uppercase">Garantiefall melden</button>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isBag }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:8px 20px 130px;display:flex;flex-direction:column;gap:16px">
+            <sc-if value="{{ bagEmpty }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:64px 0;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--bone-600)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><path d="M3 6h18"></path><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                <span style="font:var(--fw-black) 18px/1 var(--font-display);letter-spacing:var(--ls-display);text-transform:uppercase">Warenkorb leer</span>
+                <p style="font:var(--fw-regular) 13px/1.6 var(--font-text);color:var(--text-muted);max-width:26ch">Nichts ausgewählt. Das Sortiment beginnt bei Bandagen für 19,00 €.</p>
+                <button onClick="{{ goShop }}" style="margin-top:6px;height:44px;padding:0 20px;background:transparent;color:var(--action-secondary-fg);border:1px solid var(--action-secondary-border);border-radius:var(--radius-control);cursor:pointer;font:var(--fw-black) 12px/1 var(--font-display);letter-spacing:var(--ls-label);text-transform:uppercase">Sortiment öffnen</button>
+              </div>
+            </sc-if>
+            <sc-for list="{{ bagLines }}" as="l" hint-placeholder-count="2">
+              <div style="display:flex;gap:14px;padding-bottom:16px;border-bottom:1px solid var(--border-hairline)">
+                <div style="width:84px;flex:none;aspect-ratio:4/5;background:var(--black-800);box-shadow:var(--inset-hairline);border-radius:var(--radius-media);display:grid;place-items:center;font:var(--fw-bold) 9px/1.2 var(--font-display);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--bone-600)">4:5</div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:6px">
+                  <span style="font:var(--fw-black) 14px/1.15 var(--font-display);letter-spacing:var(--ls-title);text-transform:uppercase">{{ l.name }}</span>
+                  <span style="font:var(--fw-regular) 11px/1.4 var(--font-mono);color:var(--text-muted)">{{ l.meta }}</span>
+                  <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between">
+                    <div style="display:flex;align-items:center;gap:2px">
+                      <button onClick="{{ l.dec }}" aria-label="Weniger" style="width:36px;height:36px;display:grid;place-items:center;background:transparent;border:0;box-shadow:inset 0 0 0 1px var(--border-hairline);border-radius:var(--radius-control);cursor:pointer;color:var(--text-primary)">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"></path></svg>
+                      </button>
+                      <span style="width:34px;text-align:center;font:var(--fw-regular) 13px/1 var(--font-mono)">{{ l.qty }}</span>
+                      <button onClick="{{ l.inc }}" aria-label="Mehr" style="width:36px;height:36px;display:grid;place-items:center;background:transparent;border:0;box-shadow:inset 0 0 0 1px var(--border-hairline);border-radius:var(--radius-control);cursor:pointer;color:var(--text-primary)">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+                      </button>
+                    </div>
+                    <span style="font:var(--fw-black) 14px/1 var(--font-display);color:var(--gold-400)">{{ l.sum }} €</span>
+                  </div>
+                </div>
+              </div>
+            </sc-for>
+            <sc-if value="{{ hasBag }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;flex-direction:column;gap:14px">
+                <div style="display:flex;gap:8px">
+                  <input value="{{ voucher }}" onChange="{{ setVoucher }}" placeholder="Gutscheincode" style="flex:1;height:44px;padding:0 14px;background:var(--surface-inset);border:0;box-shadow:var(--inset-hairline);border-radius:var(--radius-control);color:var(--text-primary);font:var(--fw-regular) 13px/1 var(--font-mono)">
+                  <button onClick="{{ applyVoucher }}" style="height:44px;padding:0 18px;background:transparent;color:var(--action-secondary-fg);border:1px solid var(--action-secondary-border);border-radius:var(--radius-control);cursor:pointer;font:var(--fw-black) 12px/1 var(--font-display);letter-spacing:var(--ls-label);text-transform:uppercase">Einlösen</button>
+                </div>
+                <div style="padding:18px;background:var(--surface-card);box-shadow:var(--inset-hairline);border-radius:var(--radius-card);display:flex;flex-direction:column;gap:10px">
+                  <div style="display:flex;justify-content:space-between;font:var(--fw-regular) 12px/1.5 var(--font-mono);color:var(--text-secondary)"><span>Zwischensumme</span><span>{{ bagTotal }} €</span></div>
+                  <div style="display:flex;justify-content:space-between;font:var(--fw-regular) 12px/1.5 var(--font-mono);color:var(--text-secondary)"><span>Versand</span><span>{{ shipping }}</span></div>
+                  <div style="height:1px;background:var(--border-hairline)"></div>
+                  <div style="display:flex;justify-content:space-between;align-items:baseline">
+                    <span style="font:var(--fw-bold) 11px/1.2 var(--font-display);letter-spacing:var(--ls-label);text-transform:uppercase">Gesamt</span>
+                    <span style="font:var(--fw-black) 22px/1 var(--font-display);color:var(--gold-400)">{{ bagTotal }} €</span>
+                  </div>
+                  <span style="font:var(--fw-regular) 11px/1.4 var(--font-mono);color:var(--text-muted)">inkl. 19 % MwSt.</span>
+                </div>
+                <button onClick="{{ checkout }}" style="height:56px;width:100%;display:flex;align-items:center;justify-content:center;background:var(--action-primary-bg);color:var(--action-primary-fg);border:0;border-radius:var(--radius-control);cursor:pointer;font:var(--fw-black) 14px/1 var(--font-display);letter-spacing:var(--ls-label);text-transform:uppercase">Zur Kasse</button>
+              </div>
+            </sc-if>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isSearch }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:8px 20px 120px;display:flex;flex-direction:column;gap:20px">
+            <div style="display:flex;align-items:center;gap:10px;height:48px;padding:0 14px;background:var(--surface-inset);box-shadow:var(--inset-hairline);border-radius:var(--radius-control)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.75" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.6-3.6"></path></svg>
+              <input value="{{ query }}" onChange="{{ setQuery }}" placeholder="Handschuhe, 16 oz, Lumpinee" style="flex:1;background:none;border:0;outline:none;color:var(--text-primary);font:var(--fw-regular) 14px/1 var(--font-text)">
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <span style="font:var(--fw-bold) 11px/1.2 var(--font-display);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--text-muted)">Häufig gesucht</span>
+              <div style="display:flex;flex-wrap:wrap;gap:8px">
+                <sc-for list="{{ suggests }}" as="q" hint-placeholder-count="5">
+                  <button onClick="{{ q.pick }}" style="height:34px;padding:0 14px;background:transparent;border:0;box-shadow:inset 0 0 0 1px var(--border-hairline);border-radius:var(--radius-control);cursor:pointer;color:var(--text-secondary);font:var(--fw-semibold) 12px/1 var(--font-text)">{{ q.label }}</button>
+                </sc-for>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column">
+              <sc-for list="{{ results }}" as="r" hint-placeholder-count="4">
+                <button onClick="{{ r.open }}" style="display:flex;align-items:center;gap:14px;padding:12px 0;background:none;border:0;border-bottom:1px solid var(--border-hairline);cursor:pointer;text-align:left">
+                  <span style="width:52px;height:52px;flex:none;background:var(--black-800);box-shadow:var(--inset-hairline);border-radius:var(--radius-media)"></span>
+                  <span style="flex:1;display:flex;flex-direction:column;gap:4px">
+                    <span style="font:var(--fw-black) 13px/1.15 var(--font-display);letter-spacing:var(--ls-title);text-transform:uppercase;color:var(--text-primary)">{{ r.name }}</span>
+                    <span style="font:var(--fw-regular) 11px/1.4 var(--font-mono);color:var(--text-muted)">{{ r.line }} · {{ r.price }} €</span>
+                  </span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--bone-600)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isWish }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:8px 20px 120px;display:flex;flex-direction:column;gap:16px">
+            <span style="font:var(--fw-regular) 12px/1.5 var(--font-mono);color:var(--text-muted)">{{ wishCount }} Artikel gemerkt</span>
+            <sc-for list="{{ wishTiles }}" as="w" hint-placeholder-count="2">
+              <div style="display:flex;gap:14px;padding-bottom:16px;border-bottom:1px solid var(--border-hairline)">
+                <div onClick="{{ w.open }}" style="width:84px;flex:none;aspect-ratio:4/5;background:var(--black-800);box-shadow:var(--inset-hairline);border-radius:var(--radius-media);cursor:pointer;display:grid;place-items:center;font:var(--fw-bold) 9px/1.2 var(--font-display);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--bone-600)">4:5</div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:6px">
+                  <span style="font:var(--fw-black) 14px/1.15 var(--font-display);letter-spacing:var(--ls-title);text-transform:uppercase">{{ w.name }}</span>
+                  <span style="font:var(--fw-regular) 11px/1.4 var(--font-mono);color:var(--text-muted)">{{ w.line }} · {{ w.sizeLine }}</span>
+                  <span style="font:var(--fw-black) 14px/1 var(--font-display);color:var(--gold-400)">{{ w.price }} €</span>
+                  <button onClick="{{ w.open }}" style="margin-top:6px;align-self:flex-start;height:36px;padding:0 14px;background:transparent;color:var(--action-secondary-fg);border:1px solid var(--action-secondary-border);border-radius:var(--radius-control);cursor:pointer;font:var(--fw-black) 11px/1 var(--font-display);letter-spacing:var(--ls-label);text-transform:uppercase">Größe wählen</button>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isAcct }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:8px 0 120px;display:flex;flex-direction:column;gap:26px">
+            <div style="padding:0 20px;display:flex;align-items:center;gap:14px">
+              <div style="width:52px;height:52px;border-radius:var(--radius-pill);background:var(--surface-inset);box-shadow:var(--inset-hairline);display:grid;place-items:center;font:var(--fw-black) 15px/1 var(--font-display);color:var(--gold-500)">SK</div>
+              <div style="display:flex;flex-direction:column;gap:4px">
+                <span style="font:var(--fw-black) 17px/1 var(--font-display);letter-spacing:var(--ls-title);text-transform:uppercase">Somchai K.</span>
+                <span style="font:var(--fw-regular) 11px/1.4 var(--font-mono);color:var(--text-muted)">Mitglied seit 2023 · Größenprofil 14 oz</span>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <div style="padding:0 20px;display:flex;align-items:center;justify-content:space-between">
+                <span style="font:var(--fw-bold) 11px/1.2 var(--font-display);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--text-muted)">Mein Equipment</span>
+                <button onClick="{{ goScan }}" style="background:none;border:0;padding:0;cursor:pointer;font:var(--fw-semibold) 12px/1 var(--font-text);color:var(--text-gold)">QR scannen</button>
+              </div>
+              <div style="padding:0 20px;display:flex;flex-direction:column">
+                <sc-for list="{{ gearRows }}" as="g" hint-placeholder-count="3">
+                  <button onClick="{{ g.open }}" style="display:flex;align-items:center;gap:14px;padding:12px 0;background:none;border:0;border-bottom:1px solid var(--border-hairline);cursor:pointer;text-align:left">
+                    <span style="width:44px;height:44px;flex:none;background:var(--surface-inset);box-shadow:var(--inset-hairline);border-radius:var(--radius-media);display:grid;place-items:center">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold-500)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.7 8.9a1 1 0 0 1-.6 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1 1 0 0 1 1.5 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>
+                    </span>
+                    <span style="flex:1;display:flex;flex-direction:column;gap:4px">
+                      <span style="font:var(--fw-black) 13px/1.15 var(--font-display);letter-spacing:var(--ls-title);text-transform:uppercase;color:var(--text-primary)">{{ g.name }}</span>
+                      <span style="font:var(--fw-regular) 11px/1.4 var(--font-mono);color:var(--text-muted)">{{ g.meta }}</span>
+                    </span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--bone-600)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+                  </button>
+                </sc-for>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column">
+              <sc-for list="{{ acctRows }}" as="a" hint-placeholder-count="4">
+                <div style="padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;height:52px;border-bottom:1px solid var(--border-hairline)">
+                  <span style="font:var(--fw-semibold) 14px/1 var(--font-text);color:var(--text-secondary)">{{ a.label }}</span>
+                  <span style="font:var(--fw-regular) 11px/1.4 var(--font-mono);color:var(--text-muted)">{{ a.meta }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+      </div>
+
+      <sc-if value="{{ isProd }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:12px 20px 30px;background:rgba(0,0,0,.9);backdrop-filter:blur(10px);border-top:1px solid var(--border-hairline);display:flex;align-items:center;gap:10px;z-index:30">
+          <div style="display:flex;align-items:center;gap:2px">
+            <button onClick="{{ decQty }}" aria-label="Weniger" style="width:44px;height:52px;display:grid;place-items:center;background:transparent;border:0;box-shadow:inset 0 0 0 1px var(--border-hairline);border-radius:var(--radius-control);cursor:pointer;color:var(--text-primary)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"></path></svg>
+            </button>
+            <span style="width:32px;text-align:center;font:var(--fw-regular) 13px/1 var(--font-mono)">{{ qty }}</span>
+            <button onClick="{{ incQty }}" aria-label="Mehr" style="width:44px;height:52px;display:grid;place-items:center;background:transparent;border:0;box-shadow:inset 0 0 0 1px var(--border-hairline);border-radius:var(--radius-control);cursor:pointer;color:var(--text-primary)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+            </button>
+          </div>
+          <button onClick="{{ addToBag }}" style="flex:1;height:52px;display:flex;align-items:center;justify-content:center;gap:10px;background:var(--action-primary-bg);color:var(--action-primary-fg);border:0;border-radius:var(--radius-control);cursor:pointer;font:var(--fw-black) 13px/1 var(--font-display);letter-spacing:var(--ls-label);text-transform:uppercase">In den Warenkorb · {{ pPrice }} €</button>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ showTabs }}" hint-placeholder-val="{{ true }}">
+        <div style="position:absolute;bottom:0;left:0;right:0;height:88px;padding:0 8px 26px;background:rgba(0,0,0,.88);backdrop-filter:blur(10px);border-top:1px solid var(--border-hairline);display:flex;align-items:flex-start;z-index:30">
+          <button onClick="{{ goHome }}" style="flex:1;height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:none;border:0;cursor:pointer;color:{{ cHome }}">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10 12 3l9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+            <span style="font:var(--fw-bold) 9px/1 var(--font-display);letter-spacing:var(--ls-label);text-transform:uppercase">Start</span>
+          </button>
+          <button onClick="{{ goShop }}" style="flex:1;height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:none;border:0;cursor:pointer;color:{{ cShop }}">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18"></path><path d="M3 12h18"></path><path d="M3 19h18"></path></svg>
+            <span style="font:var(--fw-bold) 9px/1 var(--font-display);letter-spacing:var(--ls-label);text-transform:uppercase">Shop</span>
+          </button>
+          <div style="flex:1;display:flex;justify-content:center">
+            <button onClick="{{ goScan }}" aria-label="Scannen" style="margin-top:{{ scanTabTop }};width:{{ scanTabSize }};height:{{ scanTabSize }};border-radius:{{ scanTabRadius }};border:0;cursor:pointer;background:{{ scanTabBg }};color:{{ scanTabFg }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;box-shadow:{{ scanTabShadow }}">
+              <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path><path d="M7 12h10"></path></svg>
+              <span style="font:var(--fw-bold) 9px/1 var(--font-display);letter-spacing:var(--ls-label);text-transform:uppercase">{{ scanTabLabel }}</span>
+            </button>
+          </div>
+          <button onClick="{{ goWish }}" style="flex:1;height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:none;border:0;cursor:pointer;color:{{ cWish }}">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>
+            <span style="font:var(--fw-bold) 9px/1 var(--font-display);letter-spacing:var(--ls-label);text-transform:uppercase">Merken</span>
+          </button>
+          <button onClick="{{ goAccount }}" style="flex:1;height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:none;border:0;cursor:pointer;color:{{ cAcct }}">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M20 21a8 8 0 0 0-16 0"></path></svg>
+            <span style="font:var(--fw-bold) 9px/1 var(--font-display);letter-spacing:var(--ls-label);text-transform:uppercase">Konto</span>
+          </button>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;left:16px;right:16px;bottom:104px;padding:14px 16px;background:var(--surface-raised);box-shadow:var(--inset-gold),var(--shadow-3);border-radius:var(--radius-card);display:flex;align-items:center;gap:12px;z-index:45;animation:pomRise .2s var(--ease-out)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold-500)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+          <span style="flex:1;font:var(--fw-semibold) 13px/1.4 var(--font-text);color:var(--text-primary)">{{ toast }}</span>
+          <button onClick="{{ goBag }}" style="background:none;border:0;padding:0;cursor:pointer;font:var(--fw-black) 11px/1 var(--font-display);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--text-gold)">Ansehen</button>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ sheetSize }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;inset:0;z-index:60;display:flex;flex-direction:column;justify-content:flex-end;animation:pomFade .2s var(--ease-out)">
+          <div onClick="{{ closeSheet }}" style="position:absolute;inset:0;background:var(--surface-overlay);backdrop-filter:blur(6px)"></div>
+          <div style="position:relative;background:var(--surface-raised);border-radius:var(--radius-modal) var(--radius-modal) 0 0;box-shadow:var(--shadow-modal);padding:22px 20px 34px;display:flex;flex-direction:column;gap:16px;animation:pomRise .28s var(--ease-out)">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px">
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <span style="font:var(--fw-bold) 11px/1.2 var(--font-display);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--gold-400)">Passform</span>
+                <span style="font:var(--fw-black) 22px/1 var(--font-display);letter-spacing:var(--ls-display);text-transform:uppercase">Größentabelle</span>
+              </div>
+              <button onClick="{{ closeSheet }}" aria-label="Schließen" style="width:44px;height:44px;margin:-8px -10px 0 0;display:grid;place-items:center;background:none;border:0;cursor:pointer;color:var(--text-secondary)">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M18 6 6 18"></path><path d="M6 6l12 12"></path></svg>
+              </button>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1.1fr 1.3fr;gap:0 12px;font:var(--fw-regular) 12px/1.5 var(--font-mono)">
+              <span style="color:var(--text-muted);padding-bottom:8px">Gewicht</span>
+              <span style="color:var(--text-muted);padding-bottom:8px">Körper</span>
+              <span style="color:var(--text-muted);padding-bottom:8px">Einsatz</span>
+              <sc-for list="{{ sizeTable }}" as="row" hint-placeholder-count="4">
+                <span style="color:var(--gold-400);padding:9px 0;border-top:1px solid var(--border-hairline)">{{ row.a }}</span>
+                <span style="padding:9px 0;border-top:1px solid var(--border-hairline)">{{ row.b }}</span>
+                <span style="padding:9px 0;border-top:1px solid var(--border-hairline)">{{ row.c }}</span>
+              </sc-for>
+            </div>
+            <p style="font:var(--fw-regular) 13px/1.6 var(--font-text);color:var(--text-muted)">Bei 14 oz fällt die Passform knapp aus. Wer Bandagen mit 5 m wickelt, nimmt eine Größe größer.</p>
+            <button onClick="{{ closeSheet }}" style="height:52px;width:100%;display:flex;align-items:center;justify-content:center;background:var(--action-primary-bg);color:var(--action-primary-fg);border:0;border-radius:var(--radius-control);cursor:pointer;font:var(--fw-black) 13px/1 var(--font-display);letter-spacing:var(--ls-label);text-transform:uppercase">Verstanden</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ sheetFilter }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;inset:0;z-index:60;display:flex;flex-direction:column;justify-content:flex-end;animation:pomFade .2s var(--ease-out)">
+          <div onClick="{{ closeSheet }}" style="position:absolute;inset:0;background:var(--surface-overlay);backdrop-filter:blur(6px)"></div>
+          <div style="position:relative;background:var(--surface-raised);border-radius:var(--radius-modal) var(--radius-modal) 0 0;box-shadow:var(--shadow-modal);padding:22px 20px 34px;display:flex;flex-direction:column;gap:20px;animation:pomRise .28s var(--ease-out)">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <span style="font:var(--fw-black) 22px/1 var(--font-display);letter-spacing:var(--ls-display);text-transform:uppercase">Filter</span>
+              <button onClick="{{ closeSheet }}" aria-label="Schließen" style="width:44px;height:44px;margin-right:-10px;display:grid;place-items:center;background:none;border:0;cursor:pointer;color:var(--text-secondary)">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M18 6 6 18"></path><path d="M6 6l12 12"></path></svg>
+              </button>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <span style="font:var(--fw-bold) 11px/1.2 var(--font-display);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--text-muted)">Sportart</span>
+              <div style="display:flex;flex-wrap:wrap;gap:8px">
+                <sc-for list="{{ sportOpts }}" as="s" hint-placeholder-count="5">
+                  <button onClick="{{ s.pick }}" style="height:38px;padding:0 14px;border:0;border-radius:var(--radius-control);cursor:pointer;background:{{ s.bg }};color:{{ s.fg }};box-shadow:{{ s.ring }};font:var(--fw-semibold) 12px/1 var(--font-text)">{{ s.label }}</button>
+                </sc-for>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <span style="font:var(--fw-bold) 11px/1.2 var(--font-display);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--text-muted)">Sortierung</span>
+              <div style="display:flex;flex-wrap:wrap;gap:8px">
+                <sc-for list="{{ sortOpts }}" as="s" hint-placeholder-count="3">
+                  <button onClick="{{ s.pick }}" style="height:38px;padding:0 14px;border:0;border-radius:var(--radius-control);cursor:pointer;background:{{ s.bg }};color:{{ s.fg }};box-shadow:{{ s.ring }};font:var(--fw-semibold) 12px/1 var(--font-text)">{{ s.label }}</button>
+                </sc-for>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 0">
+              <span style="font:var(--fw-semibold) 14px/1 var(--font-text);color:var(--text-secondary)">Nur auf Lager</span>
+              <button onClick="{{ toggleStock }}" aria-label="Nur auf Lager" style="width:52px;height:30px;border-radius:var(--radius-pill);border:0;cursor:pointer;background:{{ stockTrack }};box-shadow:{{ stockRing }};display:flex;align-items:center;padding:3px;justify-content:{{ stockJustify }}">
+                <span style="width:24px;height:24px;border-radius:var(--radius-pill);background:{{ stockKnob }};transition:var(--transition-control)"></span>
+              </button>
+            </div>
+            <button onClick="{{ closeSheet }}" style="height:52px;width:100%;display:flex;align-items:center;justify-content:center;background:var(--action-primary-bg);color:var(--action-primary-fg);border:0;border-radius:var(--radius-control);cursor:pointer;font:var(--fw-black) 13px/1 var(--font-display);letter-spacing:var(--ls-label);text-transform:uppercase">{{ catCount }} Artikel zeigen</button>
+          </div>
+        </div>
+      </sc-if>
+
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;startScreen&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;category&quot;,&quot;product&quot;,&quot;scan&quot;,&quot;scanp&quot;,&quot;scang&quot;,&quot;bag&quot;,&quot;search&quot;,&quot;wish&quot;,&quot;account&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Prototype&quot;},&quot;scanTabStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Erhabener Goldkreis&quot;,&quot;Flacher Tab&quot;],&quot;default&quot;:&quot;Erhabener Goldkreis&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Navigation&quot;},&quot;promoBar&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Home&quot;},&quot;showStockLines&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Produkt&quot;}}">
+const RING_OFF = 'inset 0 0 0 1px var(--border-hairline)';
+const RING_ON = 'inset 0 0 0 1px var(--border-gold)';
+
+const PRODUCTS = [
+  {id:'bgv1',name:'Sparring Handschuhe',line:'Nakhon',price:'149,00',sizes:['10 oz','12 oz','14 oz','16 oz'],badge:'Neu',cat:'Muay Thai',
+   blurb:'Handgenäht aus vollnarbigem Rindsleder, drei Schaumlagen, verstärkte Daumenkappe. Für täglichen Sparringsbetrieb gebaut.',
+   long:'In Bangkok von Hand gefertigt. Die Schaumlagen sind so geschichtet, dass der Schlag über die Handfläche verteilt wird — bei 16 oz genug Volumen für Sparring, bei 10 oz kompakt genug für den Wettkampf. Das Klettband ist 12 cm lang und stützt das Handgelenk, ohne Bandagen zu ersetzen.',
+   specs:[['Material','Rindsleder, vollnarbig'],['Füllung','3-lagiger Schaum'],['Verschluss','Klettband, 12 cm'],['Herkunft','Bangkok, Thailand'],['Gewicht','454 g']]},
+  {id:'shin',name:'Shin Guards Pro',line:'Rajadamnern',price:'119,00',sizes:['S','M','L','XL'],cat:'Muay Thai',
+   blurb:'Zweiteilige Schienbeinschoner mit Instep-Verlängerung. Für Clinch und Low Kicks im Dauerbetrieb.',
+   long:'Der Schaumkern ist an der Kante 22 mm dick und flacht zum Instep auf 12 mm ab, damit der Fuß beim Aufsetzen frei bleibt. Zwei Klettbänder mit Silikonstreifen halten die Position über eine ganze Runde.',
+   specs:[['Material','Rindsleder'],['Kern','EVA, 22 mm'],['Länge','20–22 cm'],['Herkunft','Bangkok, Thailand'],['Gewicht','2 × 340 g']]},
+  {id:'wraps',name:'Handbandagen 5 m',line:'Basis',price:'19,00',sizes:['4,5 m','5 m'],cat:'Muay Thai',
+   blurb:'Halbelastische Baumwollbandage mit Daumenschlaufe. Zwei Paar pro Trainingswoche.',
+   long:'Baumwolle mit 12 % Elastan, gewaschen und vorgeschrumpft. Die Kante ist doppelt umgenäht, damit sie nach vierzig Wäschen nicht aufrollt.',
+   specs:[['Material','Baumwolle, 12 % Elastan'],['Länge','5 m'],['Breite','5 cm'],['Inhalt','1 Paar'],['Gewicht','120 g']]},
+  {id:'shorts',name:'Fight Shorts Gold',line:'Heritage',price:'69,00',sizes:['S','M','L','XL'],badge:'-20%',cat:'Bekleidung',
+   blurb:'Satin-Shorts mit gesticktem Bund. Weiter Beinschnitt für hohe Kicks.',
+   long:'Satin mit 190 g/m², der Bund ist doppelt gestickt und der Beinausschnitt liegt 4 cm höher als bei Boxshorts. Waschbar bei 30 °C.',
+   specs:[['Material','Satin, 190 g/m²'],['Bund','Gummi, gestickt'],['Schnitt','Thai, weit'],['Herkunft','Bangkok, Thailand'],['Pflege','30 °C']]},
+  {id:'pads',name:'Thai Pads Curved',line:'Lumpinee',price:'229,00',sizes:['Standard'],badge:'Pro',cat:'Ausstattung',
+   blurb:'Gebogene Pratzen für Kicks und Knie. Paarweise, mit zwei Unterarmschlaufen.',
+   long:'Die Krümmung nimmt den Kick auf, ohne dass der Halter den Aufprall in die Schulter bekommt. Vier Schaumlagen, die äußere gegen Durchschlag verdichtet.',
+   specs:[['Material','Rindsleder'],['Lagen','4 Schaumlagen'],['Länge','45 cm'],['Inhalt','1 Paar'],['Gewicht','2 × 1,9 kg']]},
+  {id:'head',name:'Kopfschutz Open Face',line:'Nakhon',price:'139,00',sizes:['S/M','L/XL'],cat:'Boxen',
+   blurb:'Offener Kopfschutz mit Wangenpolster. Freies Sichtfeld für Sparring.',
+   long:'Das Wangenpolster ist 18 mm dick und nach hinten versetzt, damit die Sicht nach unten frei bleibt. Kinnriemen und Hinterkopf sind getrennt verstellbar.',
+   specs:[['Material','Rindsleder'],['Polster','18 mm'],['Verschluss','2 × Klett'],['Herkunft','Bangkok, Thailand'],['Gewicht','520 g']]},
+  {id:'mitts',name:'Punch Mitts',line:'Lumpinee',price:'99,00',sizes:['Standard'],cat:'Ausstattung',
+   blurb:'Kompakte Pratzen für Präzisionsarbeit. Gebogene Schlagfläche, offene Rückhand.',
+   long:'Die Schlagfläche ist um 15° gebogen und mit drei Lagen gefüllt. Die offene Rückhand hält die Hand des Trainers auch nach einer Stunde trocken.',
+   specs:[['Material','Rindsleder'],['Lagen','3 Schaumlagen'],['Durchmesser','20 cm'],['Inhalt','1 Paar'],['Gewicht','2 × 380 g']]},
+  {id:'bag',name:'Boxsack 180 cm',line:'Camp',price:'389,00',sizes:['180 cm'],cat:'Ausstattung',
+   blurb:'Ungefüllter Sack aus Segeltuch mit Vierpunkt-Aufhängung. Für Kicks über die volle Länge.',
+   long:'Ungefüllt geliefert, Füllgewicht 60–70 kg. Die Vierpunkt-Aufhängung ist auf 300 kg Zug geprüft, die Naht innen doppelt gekappt.',
+   specs:[['Material','Segeltuch, 900 D'],['Länge','180 cm'],['Durchmesser','35 cm'],['Aufhängung','4 Punkt'],['Zug','300 kg']]}
+];
+
+const GEAR = [
+  {id:'g1',pid:'bgv1',name:'Sparring Handschuhe 14 oz',serial:'POM-BGV1-14-0472-TH',
+   specs:[['SKU','POM-BGV1-14OZ'],['Seriennummer','0472'],['Fertigung','März 2025 · Bangkok'],['Gekauft','12.04.2025 · Store Thonglor'],['Garantie bis','12.04.2027']],
+   care:['Nach dem Training offen trocknen lassen, nie in der Tasche.','Leder alle acht Wochen mit Pflegemilch behandeln.','Innenfutter mit Sprüh-Desinfektion, nicht auswaschen.']},
+  {id:'g2',pid:'shin',name:'Shin Guards Pro · L',serial:'POM-SHIN-L-1188-TH',
+   specs:[['SKU','POM-SHIN-L'],['Seriennummer','1188'],['Fertigung','Januar 2025 · Bangkok'],['Gekauft','03.02.2025 · Online'],['Garantie bis','03.02.2027']],
+   care:['Klett nach jedem Training von Fasern befreien.','Nicht in der Sonne trocknen, das Leder wird brüchig.','Silikonstreifen mit feuchtem Tuch abwischen.']},
+  {id:'g3',pid:'pads',name:'Thai Pads Curved',serial:'POM-PADS-STD-0091-TH',
+   specs:[['SKU','POM-PADS-STD'],['Seriennummer','0091'],['Fertigung','November 2024 · Bangkok'],['Gekauft','20.11.2024 · Team-Bestellung'],['Garantie bis','20.11.2026']],
+   care:['Schaumkern jährlich prüfen, bei Durchschlag tauschen.','Griffschlaufen auf Naht kontrollieren.','Leder trocken lagern, nicht stapeln.']}
+];
+
+const SIZE_TABLE = [['10 oz','–60 kg','Wettkampf'],['12 oz','60–70 kg','Wettkampf / Pratzen'],['14 oz','70–80 kg','Sparring'],['16 oz','80 kg+','Sparring']];
+const SPORTS = ['Muay Thai','Boxen','MMA','Bekleidung','Ausstattung'];
+const SORTS = ['Empfehlung','Preis aufsteigend','Neuheiten'];
+const TITLES = {category:'Sortiment',product:'Produkt',bag:'Warenkorb',scan:'Scanner',scanp:'Scan-Ergebnis',scang:'Equipment-Pass',search:'Suche',wish:'Merkliste',account:'Konto'};
+
+const num = s => parseFloat(s.replace('.','').replace(',','.'));
+const money = n => n.toFixed(2).replace('.',',');
+
+class Component extends DCLogic {
+  state = {
+    screen:'home', hist:[], cat:'Muay Thai', pid:'bgv1', size:'14 oz', qty:1,
+    bag:[], wish:['shin'], sheet:null, toast:null, tab:'desc', scanMode:'produkt',
+    scanning:false, gearId:'g1', query:'', voucher:'', sort:'Empfehlung', onlyStock:false
+  };
+
+  componentDidMount(){
+    const s = this.props.startScreen;
+    if (s && s !== 'home') this.setState({screen:s});
+  }
+  componentWillUnmount(){ clearTimeout(this._t); clearTimeout(this._s); }
+
+  go = (screen, extra) => this.setState(st => ({screen, hist:[...st.hist, st.screen], sheet:null, ...(extra||{})}));
+  back = () => this.setState(st => ({screen: st.hist[st.hist.length-1] || 'home', hist: st.hist.slice(0,-1), sheet:null}));
+
+  toast = text => { clearTimeout(this._t); this.setState({toast:text}); this._t = setTimeout(()=>this.setState({toast:null}), 2600); };
+
+  openProduct = id => this.setState(st => {
+    const p = PRODUCTS.find(x=>x.id===id);
+    return {screen:'product', hist:[...st.hist, st.screen], pid:id, size:p.sizes[Math.min(2,p.sizes.length-1)], qty:1, tab:'desc', sheet:null};
+  });
+
+  addToBag = () => {
+    const {pid,size,qty} = this.state;
+    const p = PRODUCTS.find(x=>x.id===pid);
+    this.setState(st => {
+      const i = st.bag.findIndex(l=>l.id===pid && l.size===size);
+      const bag = i>-1 ? st.bag.map((l,n)=>n===i?{...l,qty:l.qty+qty}:l) : [...st.bag,{id:pid,size,qty}];
+      return {bag};
+    });
+    this.toast(p.name + ' · ' + size);
+  };
+
+  doScan = () => {
+    this.setState({scanning:true});
+    clearTimeout(this._s);
+    this._s = setTimeout(()=>{
+      const mode = this.state.scanMode;
+      this.setState({scanning:false});
+      if (mode==='produkt') this.setState(st=>({screen:'scanp', hist:[...st.hist,'scan'], pid:'bgv1', size:'14 oz'}));
+      else this.setState(st=>({screen:'scang', hist:[...st.hist,'scan'], gearId:'g1'}));
+    }, 1100);
+  };
+
+  chip = (on, label, pick) => ({label, pick,
+    bg: on ? 'var(--gold-500)' : 'transparent',
+    fg: on ? 'var(--black-1000)' : 'var(--text-secondary)',
+    ring: on ? 'none' : RING_OFF});
+
+  renderVals(){
+    const st = this.state, sc = st.screen;
+    const p = PRODUCTS.find(x=>x.id===st.pid) || PRODUCTS[0];
+    const gear = GEAR.find(g=>g.id===st.gearId) || GEAR[0];
+    const tile = x => ({...x, sizeLine:x.sizes.join(' · '), open:()=>this.openProduct(x.id),
+      badgeBg: x.badge==='-20%' ? 'var(--blood-500)' : 'var(--gold-500)',
+      badgeFg: x.badge==='-20%' ? 'var(--bone-050)' : 'var(--black-1000)'});
+    let cat = PRODUCTS.filter(x=>x.cat===st.cat);
+    if (st.sort==='Preis aufsteigend') cat = [...cat].sort((a,b)=>num(a.price)-num(b.price));
+    if (st.sort==='Neuheiten') cat = [...cat].sort((a,b)=>(b.badge?1:0)-(a.badge?1:0));
+    if (st.onlyStock) cat = cat.filter(x=>x.id!=='bag');
+    const bagLines = st.bag.map((l,i)=>{
+      const pr = PRODUCTS.find(x=>x.id===l.id);
+      return {name:pr.name, meta:pr.line + ' · ' + l.size, qty:l.qty, sum:money(num(pr.price)*l.qty),
+        inc:()=>this.setState(s=>({bag:s.bag.map((x,n)=>n===i?{...x,qty:x.qty+1}:x)})),
+        dec:()=>this.setState(s=>({bag:s.bag.map((x,n)=>n===i?{...x,qty:x.qty-1}:x).filter(x=>x.qty>0)}))};
+    });
+    const total = st.bag.reduce((a,l)=>a+num(PRODUCTS.find(x=>x.id===l.id).price)*l.qty,0);
+    const q = st.query.trim().toLowerCase();
+    const results = (q ? PRODUCTS.filter(x=>(x.name+' '+x.line+' '+x.sizes.join(' ')).toLowerCase().includes(q)) : PRODUCTS.slice(0,4)).map(tile);
+    const tabColor = on => on ? 'var(--gold-400)' : 'var(--text-muted)';
+    const raised = (this.props.scanTabStyle ?? 'Erhabener Goldkreis') === 'Erhabener Goldkreis';
+    const jumpKeys = [['home','Start'],['category','Sortiment'],['product','Produkt'],['scan','Scanner'],['scanp','Scan · Regal'],['scang','Scan · Pass'],['bag','Warenkorb'],['search','Suche'],['wish','Merkliste'],['account','Konto']];
+
+    return {
+      isHome: sc==='home', isCat: sc==='category', isProd: sc==='product', isBag: sc==='bag',
+      isScan: sc==='scan', isScanP: sc==='scanp', isScanG: sc==='scang', isSearch: sc==='search',
+      isWish: sc==='wish', isAcct: sc==='account',
+      showBack: sc!=='home', showTabs: sc!=='product', showPromo: sc==='home' && (this.props.promoBar ?? true),
+      screenTitle: TITLES[sc] || '', headerMeta: sc==='category' ? st.cat : (sc==='product' ? p.line : ''),
+
+      jumps: jumpKeys.map(([k,label])=>({label, go:()=>this.setState({screen:k, sheet:null}),
+        ring: sc===k ? RING_ON : RING_OFF, fg: sc===k ? 'var(--gold-400)' : 'var(--text-secondary)'})),
+
+      bagCount: st.bag.reduce((a,l)=>a+l.qty,0), hasBag: st.bag.length>0, bagEmpty: st.bag.length===0,
+      bagLines, bagTotal: money(total), shipping: total>=99 ? 'kostenlos' : '6,90 €',
+      voucher: st.voucher, setVoucher: e=>this.setState({voucher:e.target.value}),
+      applyVoucher: ()=>this.toast('Code nicht gültig'),
+      checkout: ()=>this.toast('Kasse folgt im nächsten Schritt'),
+
+      bestsellers: [PRODUCTS[0],PRODUCTS[1],PRODUCTS[4],PRODUCTS[3]].map(tile),
+      catCards: [{name:'Muay Thai',shot:'Ringseil, Detail',open:()=>this.go('category',{cat:'Muay Thai'})},
+                 {name:'Ausstattung',shot:'Gym bei Nacht',open:()=>this.go('category',{cat:'Ausstattung'})}],
+      catTiles: cat.map(tile), catName: st.cat, catCount: cat.length, sort: st.sort,
+      chips: SPORTS.slice(0,4).map(s=>this.chip(st.cat===s, s, ()=>this.setState({cat:s}))),
+
+      pName:p.name, pLine:p.line, pPrice:p.price, pBlurb:p.blurb, pLong:p.long, pBadge:p.badge||'',
+      pSku:'POM-'+p.id.toUpperCase()+'-'+st.size.replace(/\W/g,''),
+      pSpecs:p.specs.map(([k,v])=>({k,v})),
+      pThumbs:[1,2,3,4].map(n=>({n, ring: n===1 ? 'var(--inset-gold)' : 'var(--inset-hairline)'})),
+      pSizes:p.sizes.map(s=>this.chip(st.size===s, s, ()=>this.setState({size:s}))),
+      size: st.size, qty: st.qty,
+      incQty: ()=>this.setState(s=>({qty:s.qty+1})), decQty: ()=>this.setState(s=>({qty:Math.max(1,s.qty-1)})),
+      addToBag: this.addToBag, showStock: this.props.showStockLines ?? true,
+      pTabs: [['desc','Beschreibung'],['spec','Specs'],['rev','Bewertungen']].map(([k,label])=>({label,
+        pick:()=>this.setState({tab:k}), fg: st.tab===k ? 'var(--text-primary)' : 'var(--text-muted)',
+        rule: st.tab===k ? '2px solid var(--gold-500)' : '2px solid transparent'})),
+      tabDesc: st.tab==='desc', tabSpec: st.tab==='spec', tabRev: st.tab==='rev',
+      reviews: [{who:'Kru Somchai · Bangkok',text:'Nach sechs Monaten täglichem Sparring keine Naht offen.',stars:[1,2,3,4,5]},
+                {who:'Lena B. · Köln',text:'Passform bei 14 oz eher knapp, eine Größe größer nehmen.',stars:[1,2,3,4]}].map(r=>({...r, stars:r.stars.map(n=>({n}))})),
+      crossTiles: PRODUCTS.filter(x=>x.id!==p.id).slice(0,2).map(tile),
+      wishColor: st.wish.includes(p.id) ? 'var(--gold-500)' : 'var(--bone-050)',
+      wishFill: st.wish.includes(p.id) ? 'var(--gold-500)' : 'none',
+      toggleWish: ()=>this.setState(s=>({wish: s.wish.includes(p.id) ? s.wish.filter(x=>x!==p.id) : [...s.wish,p.id]})),
+      wishTiles: st.wish.map(id=>tile(PRODUCTS.find(x=>x.id===id))), wishCount: st.wish.length,
+
+      scanModes: [['produkt','Produkt'],['equipment','Mein Equipment']].map(([k,label])=>({label,
+        pick:()=>this.setState({scanMode:k}),
+        bg: st.scanMode===k ? 'var(--gold-500)' : 'transparent',
+        fg: st.scanMode===k ? 'var(--black-1000)' : 'var(--text-secondary)'})),
+      scanning: st.scanning, doScan: this.doScan,
+      scanStatus: st.scanning ? 'Wird gelesen …' : (st.scanMode==='produkt' ? 'Regal-Code' : 'QR am Innenlabel'),
+      scanHint: st.scanMode==='produkt'
+        ? 'Code am Regal oder am Anhänger erfassen. Größen und Lagerbestand der Filiale erscheinen sofort.'
+        : 'QR im Innenfutter erfassen. Echtheit, Fertigungsdatum, Garantie und Pflege für dieses Stück.',
+      shelf: p.sizes.map((s,i)=>({label:s, pick:()=>this.setState({size:s}),
+        fg: st.size===s ? 'var(--gold-400)' : 'var(--text-primary)',
+        stock: i===0 ? 'nicht vorrätig' : (i===p.sizes.length-1 ? '4 Stk. · Regal B2' : '2 Stk. · Regal B2'),
+        stockFg: i===0 ? 'var(--text-muted)' : 'var(--text-success)'})),
+      goProduct: ()=>this.openProduct(p.id),
+
+      gearName: gear.name, gearSerial: gear.serial,
+      gearSpecs: gear.specs.map(([k,v])=>({k,v})), care: gear.care.map(t=>({t})),
+      gearRows: GEAR.map(g=>({name:g.name, meta:g.specs[3][1], open:()=>this.go('scang',{gearId:g.id})})),
+      reorder: ()=>this.openProduct(gear.pid),
+      warranty: ()=>this.toast('Garantiefall aufgenommen · Antwort in 24 h'),
+      acctRows: [{label:'Bestellungen',meta:'4'},{label:'Adressen',meta:'Bangkok, Köln'},
+                 {label:'Größenprofil',meta:'14 oz · L'},{label:'Benachrichtigungen',meta:'an'}],
+
+      query: st.query, setQuery: e=>this.setState({query:e.target.value}), results,
+      suggests: ['16 oz','Shin Guards','Lumpinee','Bandagen','Thai Pads'].map(label=>({label, pick:()=>this.setState({query:label})})),
+
+      toast: st.toast, sheetSize: st.sheet==='size', sheetFilter: st.sheet==='filter',
+      openSizeGuide: ()=>this.setState({sheet:'size'}), openFilters: ()=>this.setState({sheet:'filter'}),
+      closeSheet: ()=>this.setState({sheet:null}),
+      sizeTable: SIZE_TABLE.map(([a,b,c])=>({a,b,c})),
+      sportOpts: SPORTS.map(s=>this.chip(st.cat===s, s, ()=>this.setState({cat:s}))),
+      sortOpts: SORTS.map(s=>this.chip(st.sort===s, s, ()=>this.setState({sort:s}))),
+      toggleStock: ()=>this.setState(s=>({onlyStock:!s.onlyStock})),
+      stockTrack: st.onlyStock ? 'var(--gold-500)' : 'var(--surface-inset)',
+      stockRing: st.onlyStock ? 'none' : RING_OFF,
+      stockJustify: st.onlyStock ? 'flex-end' : 'flex-start',
+      stockKnob: st.onlyStock ? 'var(--black-1000)' : 'var(--bone-400)',
+
+      goHome: ()=>this.setState({screen:'home', hist:[], sheet:null}),
+      goShop: ()=>this.go('category'), goScan: ()=>this.go('scan'), goBag: ()=>this.go('bag'),
+      goWish: ()=>this.go('wish'), goAccount: ()=>this.go('account'), goSearch: ()=>this.go('search'),
+      goNakhon: ()=>this.openProduct('bgv1'), back: this.back,
+      cHome: tabColor(sc==='home'), cShop: tabColor(sc==='category'),
+      cWish: tabColor(sc==='wish'), cAcct: tabColor(sc==='account'),
+      scanTabLabel: raised ? '' : 'Scan',
+      scanTabSize: raised ? '58px' : '58px',
+      scanTabTop: raised ? '-12px' : '0px',
+      scanTabRadius: raised ? 'var(--radius-pill)' : 'var(--radius-control)',
+      scanTabBg: raised ? 'var(--gold-500)' : 'transparent',
+      scanTabFg: raised ? 'var(--black-1000)' : tabColor(sc==='scan'),
+      scanTabShadow: raised ? 'var(--gold-glow)' : 'none'
+    };
+  }
+}
+</script>
+</body>
+</html>

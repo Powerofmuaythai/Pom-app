@@ -1,0 +1,4 @@
+/* P.O.M webfonts. SUBSTITUTION: no brand font files were provided.
+   Chivo (display) and Figtree (text) are served from Google Fonts.
+   Replace with licensed brand binaries + local @font-face when available. */
+@import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,300..900;1,400&family=Figtree:wght@300..900&family=JetBrains+Mono:wght@400;600&display=swap");

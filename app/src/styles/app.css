@@ -506,14 +506,14 @@
 .reviews__who { font: var(--fw-regular) 11px/1.4 var(--font-mono); color: var(--text-muted); }
 
 /* ==================== Scan ==================== */
-.scan { display: flex; flex-direction: column; background: var(--black-1000); padding-bottom: 120px; }
+.scan { display: flex; flex-direction: column; background: var(--black-1000); padding-bottom: 24px; }
 .scan__modes {
   display: flex;
   gap: 4px;
   background: var(--surface-inset);
   box-shadow: var(--inset-hairline);
   border-radius: var(--radius-control);
-  margin: 12px 20px 0;
+  margin: 10px 20px 0;
   padding: 4px;
 }
 .scan__mode {
@@ -528,7 +528,8 @@
 }
 .scan__viewfinder {
   position: relative;
-  margin: 20px;
+  margin: 8px auto;
+  width: min(calc(100% - 40px), 190px);
   aspect-ratio: 1 / 1;
   background: var(--black-900);
   box-shadow: var(--inset-hairline);
@@ -554,9 +555,9 @@
   box-shadow: 0 0 18px 2px rgba(232, 185, 35, 0.55);
   animation: pomScanLine 0.8s var(--ease-standard) infinite alternate;
 }
-.scan__status { padding: 0 20px; display: flex; flex-direction: column; gap: 6px; text-align: center; }
+.scan__status { padding: 0 20px; display: flex; flex-direction: column; gap: 4px; text-align: center; }
 .scan__hint { font: var(--fw-regular) 13px/1.6 var(--font-text); color: var(--text-muted); }
-.scan__actions { margin-top: 32px; padding: 0 20px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.scan__actions { margin-top: 10px; padding: 0 20px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
 .scan__shutter {
   width: 72px;
   height: 72px;
